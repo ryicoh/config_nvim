@@ -9,6 +9,7 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set number
+set spelllang=en,cjk
 
 set signcolumn=yes
 set updatetime=200
