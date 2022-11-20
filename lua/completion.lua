@@ -53,9 +53,9 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function()
-      if vim.fn["vsnip#jumpable"](-1) == 1 then
-        feedkey("<Plug>(vsnip-jump-prev)", "")
+    ["<S-T>"] = cmp.mapping(function()
+      if v.fn["vsnip#jumpable"](-1) == 1 then
+        fekey("<Plug>(vsnip-jump-prev)", "")
       end
     end, { "i", "s" }),
     ["<C-y>"] = cmp.mapping.confirm({ select = true }),

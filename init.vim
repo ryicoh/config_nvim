@@ -1,5 +1,6 @@
 source <sfile>:h/plugin.vim
 source <sfile>:h/ddu.vim
+source <sfile>:h/gin.vim
 
 lua require('lsp')
 lua require('motion')
