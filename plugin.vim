@@ -14,17 +14,6 @@ call plug#begin()
   Plug 'matsui54/ddu-vim-ui-select'
   Plug 'matsui54/ddu-source-command_history'
 
-  " lsp
-  Plug 'neovim/nvim-lspconfig'
-
-  " completion
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/vim-vsnip'
-  Plug 'hrsh7th/cmp-vsnip'
-  Plug 'hrsh7th/cmp-path'
-  Plug 'rafamadriz/friendly-snippets'
-
   " languages
   Plug 'jparise/vim-graphql'
   Plug 'fatih/vim-go'
@@ -34,6 +23,7 @@ call plug#begin()
   Plug 'sainnhe/everforest'
   Plug 'ggandor/lightspeed.nvim'
   " Plug 'lambdalisue/gin.vim'
+  Plug 'kamykn/spelunker.vim'
 
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
@@ -49,6 +39,7 @@ if has('termguicolors')
   set termguicolors
 endif
 
+" DeepL
 let g:deepl#endpoint = "https://api-free.deepl.com/v2/translate"
 let g:deepl#auth_key = readfile(expand("~/.config/nvim/deepl_auth_key.txt"))[0]
 
@@ -56,3 +47,21 @@ vnoremap <silent> t<C-e> <Cmd>call deepl#v("EN")<CR>
 vnoremap <silent> t<C-j> <Cmd>call deepl#v("JA")<CR>
 nnoremap <silent> t<C-e> yypV<Cmd>call deepl#v("EN")<CR>
 nnoremap <silent> t<C-j> yypV<Cmd>call deepl#v("JA")<CR>
+
+" surround
+let g:surround_no_mappings = v:true
+nmap ds    <Plug>Dsurround
+nmap cs    <Plug>Csurround
+nmap cS    <Plug>CSurround
+nmap ys    <Plug>Ysurround
+nmap yS    <Plug>YSurround
+xmap <C-y> <Plug>VSurround
+xmap g<C-y> <Plug>VgSurround
+
+" lightspeed
+let g:lightspeed_no_default_keymaps = v:true
+nnoremap <silent> s <Plug>Lightspeed_s
+nnoremap <silent> S <Plug>Lightspeed_S
+xnoremap <silent> s <Plug>Lightspeed_x
+xnoremap <silent> S <Plug>Lightspeed_X
+

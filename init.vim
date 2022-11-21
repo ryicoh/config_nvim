@@ -1,9 +1,6 @@
 source <sfile>:h/plugin.vim
 source <sfile>:h/ddu.vim
-
-lua require('lsp')
-lua require('motion')
-lua require('completion')
+source <sfile>:h/lsp.vim
 
 set tabstop=2
 set shiftwidth=2
@@ -19,3 +16,4 @@ command! -nargs=? E Explore <f-args>
 
 cnoremap <M-b>  <S-Left>
 cnoremap <M-f>  <S-Right>
+
