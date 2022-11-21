@@ -7,33 +7,37 @@ call plug#begin()
   Plug 'Shougo/ddu-kind-file'
   Plug 'Shougo/ddu-filter-matcher_substring'
   Plug 'Shougo/ddu-source-file_rec'
-  Plug 'shun/ddu-source-rg'
-  Plug 'lambdalisue/mr.vim'
-  Plug 'kuuote/ddu-source-mr'
+  Plug 'Shougo/ddu-source-file_old'
+  Plug 'Shougo/ddu-source-rg'
+  Plug 'Shougo/ddu-source-buffer'
+  Plug 'Shougo/ddu-source-register'
   Plug 'matsui54/ddu-vim-ui-select'
+  Plug 'matsui54/ddu-source-command_history'
 
-  " " lsp
+  " lsp
   Plug 'neovim/nvim-lspconfig'
 
-  " " completion
+  " completion
   Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/vim-vsnip'
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/cmp-cmdline'
   Plug 'rafamadriz/friendly-snippets'
 
-  " " languages
+  " languages
   Plug 'jparise/vim-graphql'
   Plug 'fatih/vim-go'
 
-  " " others
+  " others
   Plug 'sainnhe/everforest'
   Plug 'ggandor/lightspeed.nvim'
+  " Plug 'lambdalisue/gin.vim'
+
+  Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
-  Plug 'lambdalisue/gin.vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
 
 call plug#end()
 

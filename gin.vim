@@ -20,4 +20,4 @@ augroup my-gin
   autocmd FileType gin-status silent! call s:my_gin_status()
 augroup END
 
-let g:gin_status_default_args = ['++opener=botright vsplit']
+let g:gin_status_default_args = ['++opener=split']

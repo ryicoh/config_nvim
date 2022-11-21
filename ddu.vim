@@ -9,6 +9,7 @@ call ddu#custom#patch_global({
       \  'kindOptions': {
       \     'file': { 'defaultAction': 'open' },
       \     'ui_select': { 'defaultAction': 'select' },
+      \     'command_history': { 'defaultAction': 'execute' },
       \   },
       \   'sourceParams' : {
       \     'file_rec': {
@@ -37,19 +38,22 @@ call ddu#custom#patch_global({
 noremap <silent> <space>f <Cmd>call ddu#start({
       \ 'name': 'files_rec',
       \ 'sources': [{'name': 'file_rec'}]})<CR>
+noremap <silent> <space>b <Cmd>call ddu#start({
+      \ 'name': 'buffer',
+      \ 'sources': [{'name': 'buffer'}]})<CR>
+noremap <silent> <space>h <Cmd>call ddu#start({
+      \ 'name': 'file_old',
+      \ 'sources': [{'name': 'file_old'}]})<CR>
+noremap <silent> <space>c <Cmd>call ddu#start({
+      \ 'name': 'command_history',
+      \ 'sources': [{'name': 'command_history'}]})<CR>
 noremap <silent> <space>v <Cmd>call ddu#start({
       \   'name': 'files_rec',
       \   'sources': [
       \     {
       \       'name': 'file_rec',
       \       'options': {'path': expand("~/.config/nvim")},
-      \     },
-      \   ],
-      \ })<CR>
-noremap <silent> <space>h <Cmd>call ddu#start({
-      \ 'name': 'mru',
-      \ 'sources': [{'name': 'mr'}],
-      \ 'params': {'kind': 'mru'}})<CR>
+      \     }]})<CR>
 noremap <silent> <space>r <Cmd>call ddu#start({
       \   'name': 'grep',
       \   'volatile': v:true,

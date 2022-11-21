@@ -1,6 +1,6 @@
 source <sfile>:h/plugin.vim
 source <sfile>:h/ddu.vim
-source <sfile>:h/gin.vim
+" source <sfile>:h/gin.vim
 
 lua require('lsp')
 lua require('motion')
@@ -16,4 +16,7 @@ set signcolumn=yes
 set updatetime=200
 lang en_US.UTF-8
 
-command! E Explore
+command! -nargs=? E Explore <f-args>
+
+cnoremap <M-b>  <S-Left>
+cnoremap <M-f>  <S-Right>
