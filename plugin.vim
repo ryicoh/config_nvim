@@ -30,6 +30,7 @@ call plug#begin()
   Plug 'fatih/vim-go'
 
   " others
+  Plug 'ryicoh/deepl.vim'
   Plug 'sainnhe/everforest'
   Plug 'ggandor/lightspeed.nvim'
   " Plug 'lambdalisue/gin.vim'
@@ -47,3 +48,11 @@ let g:everforest_better_performance = 1
 if has('termguicolors')
   set termguicolors
 endif
+
+let g:deepl#endpoint = "https://api-free.deepl.com/v2/translate"
+let g:deepl#auth_key = readfile(expand("~/.config/nvim/deepl_auth_key.txt"))[0]
+
+vnoremap <silent> t<C-e> <Cmd>call deepl#v("EN")<CR>
+vnoremap <silent> t<C-j> <Cmd>call deepl#v("JA")<CR>
+nnoremap <silent> t<C-e> yypV<Cmd>call deepl#v("EN")<CR>
+nnoremap <silent> t<C-j> yypV<Cmd>call deepl#v("JA")<CR>
