@@ -1,36 +1,50 @@
 call plug#begin()
-  Plug 'vim-denops/denops.vim'
+  " fuzzy search
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
-  " ddu
-  Plug 'Shougo/ddu.vim'
-  Plug 'Shougo/ddu-ui-ff'
-  Plug 'Shougo/ddu-kind-file'
-  Plug 'Shougo/ddu-filter-matcher_substring'
-  Plug 'Shougo/ddu-source-file_rec'
-  Plug 'Shougo/ddu-source-file_old'
-  Plug 'Shougo/ddu-source-rg'
-  Plug 'Shougo/ddu-source-buffer'
-  Plug 'Shougo/ddu-source-register'
-  Plug 'matsui54/ddu-vim-ui-select'
-  Plug 'matsui54/ddu-source-command_history'
+  " snippets
+  Plug 'garbas/vim-snipmate'
+  Plug 'MarcWeber/vim-addon-mw-utils'
+  Plug 'tomtom/tlib_vim'
+  Plug 'honza/vim-snippets'
 
   " languages
   Plug 'jparise/vim-graphql'
   Plug 'fatih/vim-go'
 
   " others
-  Plug 'ryicoh/deepl.vim'
-  Plug 'sainnhe/everforest'
-  Plug 'ggandor/lightspeed.nvim'
-  " Plug 'lambdalisue/gin.vim'
-  Plug 'kamykn/spelunker.vim'
-
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
 
+  Plug 'sainnhe/everforest'
+  Plug 'ryicoh/deepl.vim'
+  Plug 'ggandor/lightspeed.nvim'
+  Plug 'kamykn/spelunker.vim'
+  Plug 'andymass/vim-matchup'
+
+
 call plug#end()
+
+" fuzzy search
+let $FZF_DEFAULT_COMMAND = 'fd'
+let $FZF_DEFAULT_OPTS = "--layout=reverse --info=inline --bind ctrl-b:page-up,ctrl-f:page-down,ctrl-u:up+up+up,ctrl-d:down+down+down"
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+nnoremap <space>f <Cmd>Files<CR>
+nnoremap <space>v <Cmd>Files ~/.config/nvim<CR>
+nnoremap <space>r <Cmd>Rg<CR>
+nnoremap <space>h <Cmd>History<CR>
+nnoremap <space>b <Cmd>Buffers<CR>
+nnoremap <space>c <Cmd>History:<CR>
+nnoremap <space>/ <Cmd>History/<CR>
+
+" snippets
+let g:snipMate = { 'snippet_version' : 1 }
+imap <C-x>m <Plug>snipMateShow
+imap <C-x><C-m> <Plug>snipMateShow
 
 " colorscheme
 colorscheme everforest
@@ -64,4 +78,3 @@ nnoremap <silent> s <Plug>Lightspeed_s
 nnoremap <silent> S <Plug>Lightspeed_S
 xnoremap <silent> s <Plug>Lightspeed_x
 xnoremap <silent> S <Plug>Lightspeed_X
-
