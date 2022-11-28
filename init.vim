@@ -9,8 +9,12 @@ set signcolumn=yes
 set updatetime=200
 lang en_US.UTF-8
 
+set clipboard&
+set clipboard^=unnamedplus
+
 cnoremap <M-b>  <S-Left>
 cnoremap <M-f>  <S-Right>
+inoremap <BS> <Nop>
 
 command! -nargs=? E Explore <f-args>
 
@@ -25,4 +29,3 @@ augroup golang
   autocmd!
   autocmd BufRead *.go set path=**
 augroup END
-

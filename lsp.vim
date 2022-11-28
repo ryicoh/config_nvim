@@ -1,17 +1,34 @@
-set completeopt=menuone,noselect,noinsert
 
+" https://stackoverflow.com/questions/35837990/how-to-trigger-omnicomplete-auto-completion-on-keystrokes-in-insert-mode
+set completeopt=menuone,noselect,noinsert
 function! s:lsp_completion() abort
-  call feedkeys("\<C-x>\<C-o>")
+  if pumvisible()
+    return
+  endif
+
+  if (
+    \ (v:char >= 'a' && v:char <= 'z') ||
+    \ (v:char >= 'A' && v:char <= 'Z') ||
+    \ (v:char == '.')
+    \ )
+    call feedkeys("\<C-x>\<C-o>")
+  endif
 endfunction
 
-augroup lsp_completion
-  autocmd!
-  autocmd InsertCharPre *.ts,*.tsx,*.go call s:lsp_completion()
-augroup END
+autocmd InsertCharPre *.ts,*.tsx,*.go,*.cs call s:lsp_completion()
 
 imap <expr> <C-f> pumvisible() ? "\<C-n>\<C-n>\<C-n>\<C-n>\<C-n>\<C-n>" : "<C-f>"
 imap <expr> <C-b> pumvisible() ? "\<C-p>\<C-p>\<C-p>\<C-p>\<C-p>\<C-p>" : "<C-b>"
 
+function! s:show_lsp_clients() abort
+  lua for _, c in pairs(vim.lsp.get_active_clients()) do print(c.name) end
+endfunction
+function! s:restart_lsp() abort
+  lua vim.lsp.stop_client(vim.lsp.get_active_clients())
+  edit
+endfunction
+command! LspClients call s:show_lsp_clients()
+command! LspRestart call s:restart_lsp()
 
 lua << EOF
 
@@ -53,6 +70,17 @@ vim.api.nvim_create_autocmd("BufReadPost", {
       name = 'tsserver',
       cmd = {'typescript-language-server', '--stdio'},
       root_dir = vim.fs.dirname(vim.fs.find({'tsconfig.json'}, { upward = true })[1]),
+      diagnostics_format = "#{m} (#{s}: #{c})",
+    })
+  end
+})
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*.ts,*.tsx",
+  callback = function()
+    vim.lsp.start({
+      name = 'eslint',
+      cmd = {'vscode-eslint-language-server', '--stdio'},
+      root_dir = vim.fs.dirname(vim.fs.find({'.eslintrc.js'}, { upward = true })[1]),
     })
   end
 })
@@ -68,4 +96,17 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end
 })
 
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*.cs",
+  callback = function()
+    vim.lsp.start({
+      name = 'csharp-ls',
+      cmd = {'csharp-ls'},
+      root_dir = vim.fs.dirname(vim.fs.find({'*.csproj'}, { upward = true })[1]),
+      handlers = {
+        ["textDocument/definition"] = require('csharpls_extended').handler,
+      },
+    })
+  end
+})
 EOF

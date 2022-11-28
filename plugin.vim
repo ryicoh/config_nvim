@@ -1,4 +1,7 @@
 call plug#begin()
+  " Plug 'neovim/nvim-lspconfig'
+  Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
+
   " fuzzy search
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -18,13 +21,14 @@ call plug#begin()
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
+  Plug 'tpope/vim-repeat'
 
   Plug 'sainnhe/everforest'
   Plug 'ryicoh/deepl.vim'
   Plug 'ggandor/lightspeed.nvim'
   Plug 'kamykn/spelunker.vim'
   Plug 'andymass/vim-matchup'
-
+  Plug 'cohama/lexima.vim'
 
 call plug#end()
 
@@ -40,6 +44,7 @@ nnoremap <space>h <Cmd>History<CR>
 nnoremap <space>b <Cmd>Buffers<CR>
 nnoremap <space>c <Cmd>History:<CR>
 nnoremap <space>/ <Cmd>History/<CR>
+command! W w
 
 " snippets
 let g:snipMate = { 'snippet_version' : 1 }
@@ -78,3 +83,6 @@ nnoremap <silent> s <Plug>Lightspeed_s
 nnoremap <silent> S <Plug>Lightspeed_S
 xnoremap <silent> s <Plug>Lightspeed_x
 xnoremap <silent> S <Plug>Lightspeed_X
+
+" spelunker
+let g:spelunker_check_type = 2
