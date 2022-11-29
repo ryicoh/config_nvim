@@ -2,9 +2,18 @@ call plug#begin()
   " Plug 'neovim/nvim-lspconfig'
   Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
 
-  " fuzzy search
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
+  " denops
+  Plug 'vim-denops/denops.vim'
+  Plug 'Shougo/ddu.vim'
+  Plug 'Shougo/ddu-ui-ff'
+  Plug 'Shougo/ddu-kind-file'
+  Plug 'Shougo/ddu-filter-matcher_substring'
+  Plug 'Shougo/ddu-source-file_rec'
+  Plug 'Shougo/ddu-source-file_old'
+  Plug 'Shougo/ddu-source-rg'
+  Plug 'Shougo/ddu-source-file_external'
+  Plug 'Shougo/ddu-filter-converter_display_word'
+  Plug 'Shougo/ddu-source-line'
 
   " snippets
   Plug 'garbas/vim-snipmate'
@@ -23,7 +32,6 @@ call plug#begin()
   Plug 'tpope/vim-rhubarb'
   Plug 'tpope/vim-repeat'
 
-  Plug 'sainnhe/everforest'
   Plug 'ryicoh/deepl.vim'
   Plug 'ggandor/lightspeed.nvim'
   Plug 'kamykn/spelunker.vim'
@@ -31,11 +39,6 @@ call plug#begin()
   Plug 'cohama/lexima.vim'
 
 call plug#end()
-
-" fuzzy search
-let $FZF_DEFAULT_COMMAND = 'fd'
-let $FZF_DEFAULT_OPTS = "--layout=reverse --info=inline --bind ctrl-b:page-up,ctrl-f:page-down,ctrl-u:up+up+up,ctrl-d:down+down+down"
-let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 nnoremap <space>f <Cmd>Files<CR>
 nnoremap <space>v <Cmd>Files ~/.config/nvim<CR>
@@ -52,8 +55,7 @@ imap <C-x>m <Plug>snipMateShow
 imap <C-x><C-m> <Plug>snipMateShow
 
 " colorscheme
-colorscheme everforest
-let g:everforest_better_performance = 1
+colorscheme evening
 if has('termguicolors')
   set termguicolors
 endif

@@ -1,5 +1,6 @@
 source <sfile>:h/plugin.vim
 source <sfile>:h/lsp.vim
+source <sfile>:h/ddu.vim
 
 set tabstop=2
 set shiftwidth=2
