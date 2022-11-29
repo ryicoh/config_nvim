@@ -5,11 +5,6 @@ call ddu#custom#patch_global({
 \     'startFilter': v:true,
 \   },
 \ },
-\ 'kindOptions': {
-\   'file': {
-\     'defaultAction': 'open',
-\   },
-\ },
 \ 'sourceOptions': {
 \   '_': {
 \     'matchers': ['matcher_substring'],
@@ -59,10 +54,10 @@ command! -nargs=? -complete=dir Rg call ddu#start({
 \     'name': 'rg',
 \     'params': {
 \       'args': ["--column", "--no-heading", "--color", "never", "--json"],
+\       'path': fnamemodify(<q-args>, ':p'),
 \     },
 \     'options': {
 \       'matchers': ['converter_display_word', 'matcher_substring'],
-\       'path': expand(<q-args>) 
 \     },
 \   },
 \ ],
@@ -82,10 +77,17 @@ command! Lines call ddu#start({
 autocmd FileType ddu-ff-filter call s:ddu_filter_my_settings()
 function! s:ddu_filter_my_settings() abort
   inoremap <buffer> <CR>
-  \ <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+  \ <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'open'})<CR>
 
   let b:lexima_disabled = v:true
   inoremap <buffer><nowait> <Esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+
+  inoremap <buffer> <C-o>
+  \ <Cmd>call ddu#ui#ff#do_action('preview')<CR>
+  inoremap <buffer> <C-t>
+        \ <Cmd>call ddu#ui#ff#do_action(
+        \   'itemAction',
+        \   {'name': 'open', 'params': {'command': 'tabedit'}})<CR>
 
   inoremap <buffer> <C-j>
   \ <Cmd>call ddu#ui#ff#execute(

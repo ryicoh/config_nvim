@@ -13,6 +13,12 @@ lang en_US.UTF-8
 set clipboard&
 set clipboard^=unnamedplus
 
+" colorscheme
+colorscheme habamax
+if has('termguicolors')
+  set termguicolors
+endif
+
 cnoremap <M-b>  <S-Left>
 cnoremap <M-f>  <S-Right>
 inoremap <BS> <Nop>

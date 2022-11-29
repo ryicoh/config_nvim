@@ -54,12 +54,6 @@ let g:snipMate = { 'snippet_version' : 1 }
 imap <C-x>m <Plug>snipMateShow
 imap <C-x><C-m> <Plug>snipMateShow
 
-" colorscheme
-colorscheme evening
-if has('termguicolors')
-  set termguicolors
-endif
-
 " DeepL
 let g:deepl#endpoint = "https://api-free.deepl.com/v2/translate"
 let g:deepl#auth_key = readfile(expand("~/.config/nvim/deepl_auth_key.txt"))[0]
