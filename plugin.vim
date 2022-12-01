@@ -1,5 +1,4 @@
 call plug#begin()
-  " Plug 'neovim/nvim-lspconfig'
   Plug 'Decodetalkers/csharpls-extended-lsp.nvim'
 
   " denops
@@ -12,7 +11,6 @@ call plug#begin()
   Plug 'Shougo/ddu-source-file_old'
   Plug 'Shougo/ddu-source-rg'
   Plug 'Shougo/ddu-source-file_external'
-  Plug 'Shougo/ddu-filter-converter_display_word'
   Plug 'Shougo/ddu-source-line'
 
   " snippets
@@ -36,7 +34,7 @@ call plug#begin()
   Plug 'ggandor/lightspeed.nvim'
   Plug 'kamykn/spelunker.vim'
   Plug 'andymass/vim-matchup'
-  Plug 'cohama/lexima.vim'
+  " Plug 'cohama/lexima.vim'
 
 call plug#end()
 

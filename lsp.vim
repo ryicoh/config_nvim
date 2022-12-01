@@ -25,7 +25,8 @@ function! s:show_lsp_clients() abort
 endfunction
 function! s:restart_lsp() abort
   lua vim.lsp.stop_client(vim.lsp.get_active_clients())
-  edit
+  sleep 500m
+  execute "edit!"
 endfunction
 command! LspClients call s:show_lsp_clients()
 command! LspRestart call s:restart_lsp()
@@ -74,16 +75,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     })
   end
 })
-vim.api.nvim_create_autocmd("BufReadPost", {
-  pattern = "*.ts,*.tsx",
-  callback = function()
-    vim.lsp.start({
-      name = 'eslint',
-      cmd = {'vscode-eslint-language-server', '--stdio'},
-      root_dir = vim.fs.dirname(vim.fs.find({'.eslintrc.js'}, { upward = true })[1]),
-    })
-  end
-})
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   pattern = "*.ts,*.tsx",
+--   callback = function()
+--     vim.lsp.start({
+--       name = 'eslint',
+--       cmd = {'vscode-eslint-language-server', '--stdio'},
+--       root_dir = vim.fs.dirname(vim.fs.find({'.eslintrc.js'}, { upward = true })[1]),
+--     })
+--   end
+-- })
 
 vim.api.nvim_create_autocmd("BufReadPost", {
   pattern = "*.go",
@@ -92,6 +93,17 @@ vim.api.nvim_create_autocmd("BufReadPost", {
       name = 'gopls',
       cmd = {'gopls'},
       root_dir = vim.fs.dirname(vim.fs.find({'go.mod'}, { upward = true })[1]),
+    })
+  end
+})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*.vim",
+  callback = function()
+    vim.lsp.start({
+      name = 'vim-language-server',
+      cmd = {'vim-language-server', '--stdio'},
+      root_dir = vim.fs.dirname(vim.fs.find({'.git'}, { upward = true })[1]),
     })
   end
 })
