@@ -39,8 +39,13 @@ call ddu#custom#patch_global({
     \   }
     \ })
 
+
+let s:start_time = reltime()
+echomsg "vimrc for ddu: " .. s:start_time->reltimestr()
+
 autocmd FileType ddu-ff call s:ddu_ff_my_settings()
 function! s:ddu_ff_my_settings() abort
+  echomsg "autocmd FileType ddu-ff: " .. reltime(s:start_time)->reltimestr() .. "s"
   nnoremap <buffer> <CR>
     \ <Cmd>call ddu#ui#do_action('itemAction')<CR>
   nnoremap <buffer> <Space>
@@ -104,3 +109,5 @@ endfunction
 nmap <space>f <Cmd>call ddu#start(#{ sources: [#{ name: 'file_rec' }] })<CR>
 nmap <space>h <Cmd>call ddu#start(#{ sources: [#{ name: 'file_old' }] })<CR>
 nmap <space>r <Cmd>DduRgLive<CR>
+
+call ddu#start(#{ sources: [#{ name: 'file_rec' }] })

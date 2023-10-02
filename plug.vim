@@ -12,6 +12,7 @@ call plug#begin()
 
   " Denops
   Plug 'vim-denops/denops.vim', {'commit': '3b489d5'}
+  Plug 'vim-denops/denops-shared-server.vim', {'commit': 'f4742b5'}
 
   " Completion
   Plug 'Shougo/ddc.vim', {'commit': '87469d5'}
